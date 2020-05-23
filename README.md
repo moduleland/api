@@ -1,5 +1,5 @@
 # Website API - https://api.module.land
-![CI/CD](https://github.com/moduleland/api/workflows/CI/CD/badge.svg)
+![](https://dev.azure.com/moduleland/website/_apis/build/status/api-CI?branchName=master)
 
 ## Utils
 - [mongo lib](https://www.npmjs.com/package/mongo-redux)
