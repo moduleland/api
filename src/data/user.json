@@ -1,0 +1,48 @@
+{
+  "viewer": {
+    "id": "MDQ6VXNlcjE1NTEyNjU=",
+    "login": "pagoru",
+    "name": "pablo g. rubio",
+    "email": "pablo@voidpixel.net",
+    "avatarUrl": "https://avatars1.githubusercontent.com/u/1551265?u=531bcb2e3aba8be5e49be2f84b7ffae010289ba7&v=4",
+    "location": "Madrid, Spain",
+    "url": "https://github.com/pagoru",
+    "websiteUrl": "https://voidpixel.net",
+    "pullRequests": {
+      "totalCount": 338
+    },
+    "repositories": {
+      "totalDiskUsage": 843495,
+      "totalCount": 176
+    },
+    "organizations": {
+      "totalCount": 4,
+      "nodes": [
+        {
+          "id": "MDEyOk9yZ2FuaXphdGlvbjEyMDAxODY2",
+          "login": "darkaqua",
+          "viewerCanAdminister": true,
+          "url": "https://github.com/darkaqua"
+        },
+        {
+          "id": "MDEyOk9yZ2FuaXphdGlvbjIwNjcxNjYw",
+          "login": "bewom",
+          "viewerCanAdminister": true,
+          "url": "https://github.com/bewom"
+        },
+        {
+          "id": "MDEyOk9yZ2FuaXphdGlvbjIwODk3NDE2",
+          "login": "voidpixel",
+          "viewerCanAdminister": true,
+          "url": "https://github.com/voidpixel"
+        },
+        {
+          "id": "MDEyOk9yZ2FuaXphdGlvbjY0NDgzMzAz",
+          "login": "moduleland",
+          "viewerCanAdminister": true,
+          "url": "https://github.com/moduleland"
+        }
+      ]
+    }
+  }
+}

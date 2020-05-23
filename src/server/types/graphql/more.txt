@@ -1,0 +1,205 @@
+{
+  viewer {
+    id
+    login
+    name
+    email
+    avatarUrl
+    location
+    url
+    websiteUrl
+    pullRequests {
+      totalCount
+    }
+    repositories {
+      totalDiskUsage
+      totalCount
+    }
+    organizations(first: 100) {
+      totalCount
+      nodes {
+        id
+        login
+        viewerCanAdminister
+        url
+      }
+    }
+  }
+}
+
+// repoList
+{
+  viewer {
+    repositories(affiliations: [OWNER, ORGANIZATION_MEMBER], ownerAffiliations: [OWNER, ORGANIZATION_MEMBER], first: 100, orderBy: {field: CREATED_AT, direction: DESC}) {
+      totalCount
+      nodes {
+        id
+        owner {
+          id
+          login
+          ... on Organization {
+            id
+            viewerCanAdminister
+          }
+        }
+        name
+        description
+        homepageUrl
+        isPrivate
+        diskUsage
+        licenseInfo {
+          name
+          spdxId
+        }
+        primaryLanguage {
+          name
+        }
+        createdAt
+        pushedAt
+        updatedAt
+        forkCount
+        issues {
+          totalCount
+        }
+        pullRequests {
+          totalCount
+        }
+        stargazers {
+          totalCount
+        }
+        url
+        defaultBranchRef {
+          name
+          target {
+            oid
+          }
+        }
+        releases(first: 1, orderBy: {direction: DESC, field: NAME}) {
+          nodes {
+            tagName
+            isPrerelease
+          }
+        }
+      }
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+    }
+  }
+}
+
+
+// individualRepo
+{
+  search(query: "moduleland/public_module_test", type: REPOSITORY, first: 1) {
+    nodes {
+      ... on Repository {
+        id
+        owner {
+          id
+          login
+          ... on Organization {
+            id
+            viewerCanAdminister
+          }
+        }
+        name
+        description
+        homepageUrl
+        isPrivate
+        diskUsage
+        licenseInfo {
+          name
+          spdxId
+        }
+        primaryLanguage {
+          name
+        }
+        createdAt
+        pushedAt
+        updatedAt
+        forkCount
+        issues {
+          totalCount
+        }
+        pullRequests {
+          totalCount
+        }
+        stargazers {
+          totalCount
+        }
+        url
+        defaultBranchRef {
+          name
+          target {
+            oid
+            abbreviatedOid
+          }
+        }
+        releases(first: 1, orderBy: {direction: DESC, field: NAME}) {
+          nodes {
+            tagName
+            isPrerelease
+          }
+        }
+      }
+    }
+  }
+}
+
+
+// repo releases
+{
+  node(id: "MDEwOlJlcG9zaXRvcnkyNjA3Njk4MzQ=") {
+  ... on Repository {
+    id
+    name
+    releases(first: 100) {
+      edges {
+        node {
+          id
+          isPrerelease
+          tagName
+          updatedAt
+          publishedAt
+        }
+      }
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+    }
+  }
+}
+}
+{
+  search(query: "moduleland/public_module_test", type: REPOSITORY, first: 10) {
+    edges {
+
+    }
+  }
+}
+
+// search for a release
+{
+  search(query: "moduleland/public_module_test", type: REPOSITORY, first: 1) {
+    nodes {
+      ... on Repository {
+        defaultBranchRef {
+          name
+          target {
+            oid
+            abbreviatedOid
+          }
+        }
+        release(tagName: "1.0.0") {
+          isPrerelease
+          createdAt
+        }
+      }
+    }
+    repositoryCount
+  }
+}
+
