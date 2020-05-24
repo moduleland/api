@@ -5,9 +5,10 @@ import {
 } from "express";
 import {Utils} from "../utils/Utils";
 import GetRandomString = Utils.GetRandomString;
-import CreateHash = Utils.CreateHash;
 import {ModuleTypes} from "../types/ModuleTypes";
 import Module = ModuleTypes.Module;
+import {CryptoUtils} from "../utils/CryptoUtils";
+import CreateHash = CryptoUtils.CreateHash;
 
 const CodeExpirationTime = 5;
 

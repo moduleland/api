@@ -8,11 +8,13 @@ import {OAuthAccessToken} from "../../types/OAuthAccessToken";
 import {Utils} from "../../utils/Utils";
 import GetRandomString = Utils.GetRandomString;
 import {UserGraphql} from "../../types/graphql/UserGraphql";
-import CreateHash = Utils.CreateHash;
 import {ApiConnections} from "../../utils/ApiConnections";
 import GetGraphql = ApiConnections.GetGraphql;
 import {UserTypes} from "../../types/UserTypes";
 import ViewerUser = UserTypes.ViewerUser;
+import {CryptoUtils} from "../../utils/CryptoUtils";
+import CreateHash = CryptoUtils.CreateHash;
+import EncryptText = CryptoUtils.EncryptText;
 
 export const GetOAuth = async (req: Request, res: Response, next: NextFunction) => {
     const { mongo } = res.locals;
@@ -58,8 +60,11 @@ export const GetOAuth = async (req: Request, res: Response, next: NextFunction) 
     const userTokens = {
         user_id,
         user_token: CreateHash(user_token),
-        token_type,
-        access_token
+        // token_type,
+        // access_token
+        //TODO <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< SECURITY
+        token_type: EncryptText(token_type),
+        access_token: EncryptText(access_token)
     };
 
     const validResponse = (pathname: string = '') =>
@@ -78,6 +83,8 @@ export const GetOAuth = async (req: Request, res: Response, next: NextFunction) 
         }
         await mongo.insert('users', {
             ...viewerUser.viewer,
+            //TODO <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< SECURITY
+            email: EncryptText(viewerUser.viewer.email),
             ...userTokens
         });
         validResponse('#welcome');

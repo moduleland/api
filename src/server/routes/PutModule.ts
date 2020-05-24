@@ -8,6 +8,8 @@ import {ApiConnections} from "../utils/ApiConnections";
 import GetGraphql = ApiConnections.GetGraphql;
 import {RepoTypes} from "../types/RepoTypes";
 import SearchRepo = RepoTypes.SearchRepo;
+import {CryptoUtils} from "../utils/CryptoUtils";
+import DecryptText = CryptoUtils.DecryptText;
 
 export const PutModule = async (req: Request, res: Response, next: NextFunction) => {
     const { user, mongo } = res.locals;
@@ -15,8 +17,11 @@ export const PutModule = async (req: Request, res: Response, next: NextFunction)
     const { login, module } = req.body;
 
     const searchRepo = await GetGraphql<SearchRepo>(
-        user.token_type,
-        user.access_token,
+        // user.token_type,
+        // user.access_token,
+        //TODO <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< SECURITY
+        DecryptText(user.token_type),
+        DecryptText(user.access_token),
         RepoGraphql.GetRepo(login, module)
     );
     try {

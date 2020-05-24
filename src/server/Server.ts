@@ -6,7 +6,6 @@ import * as cookieParser from 'cookie-parser';
 import {GetUser, GetUserByLogin} from "./routes/GetUser";
 import {NextFunction, Request, Response} from "express";
 import {Utils} from "./utils/Utils";
-import VerifyHash = Utils.VerifyHash;
 import {GetRepos} from "./routes/GetRepos";
 import GetDateFormat = Utils.GetDateFormat;
 import * as Mongo from 'mongo-redux'
@@ -18,6 +17,8 @@ import {GetModule} from "./routes/GetModule";
 import {DeleteModule} from "./routes/DeleteModule";
 import {GetSearch} from "./routes/GetSearch";
 import {GetModuleCode} from "./routes/GetModuleCode";
+import {CryptoUtils} from "./utils/CryptoUtils";
+import VerifyHash = CryptoUtils.VerifyHash;
 
 export class Server {
 

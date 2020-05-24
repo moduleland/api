@@ -13,6 +13,8 @@ import ViewerRepos = RepoTypes.ViewerRepos;
 import Repo = RepoTypes.Repo;
 import {RepoFilters} from "../filters/RepoFilters";
 import IsValidRepo = RepoFilters.IsValidRepo;
+import {CryptoUtils} from "../utils/CryptoUtils";
+import DecryptText = CryptoUtils.DecryptText;
 
 export const GetRepos = async (req: Request, res: Response, next: NextFunction) => {
     const { user, mongo } = res.locals;
@@ -21,8 +23,11 @@ export const GetRepos = async (req: Request, res: Response, next: NextFunction) 
 
     const getRepositories = async (repositories: any[] = [], nextCursor: string = null): Promise<Repo[]> => {
         const { pageInfo, nodes } = (await GetGraphql<ViewerRepos>(
-            user.token_type,
-            user.access_token,
+            // user.token_type,
+            // user.access_token,
+            //TODO <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< SECURITY
+            DecryptText(user.token_type),
+            DecryptText(user.access_token),
             RepoGraphql.GetRepos(nextCursor)
         )).viewer.repositories;
         const { hasNextPage, endCursor }  = pageInfo;
